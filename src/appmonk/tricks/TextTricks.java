@@ -96,10 +96,10 @@ public class TextTricks {
         return hash;
     }
     
-    public static final Pattern REGEXP_PHONE_NUMBER_USA = Pattern.compile("^\\(?\\d{3}\\)?[- ]?\\d{3}[- ]?\\d{4}$");
+    public static final Pattern REGEXP_PHONE_NUMBER_USA = Pattern.compile("^\\+?1?[- ]?\\(?\\d{3}\\)?[- ]?\\d{3}[- ]?\\d{4}$");
     public static final Pattern REGEXP_SIMPLE_EMAIL = Pattern.compile("^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,8}$");
 
-    public static boolean isValidPhoneNumber(String phoneNumber) {
+    public static boolean isValidUSAPhoneNumber(String phoneNumber) {
         return REGEXP_PHONE_NUMBER_USA.matcher(phoneNumber).matches();
     }
     
