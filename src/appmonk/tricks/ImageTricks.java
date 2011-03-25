@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -299,6 +300,12 @@ public class ImageTricks {
         if (imageFile.exists() && imageFile.isFile()) {
             try {
                 Uri dataUri = Uri.parse(MediaStore.Images.Media.insertImage(c.getContentResolver(), imageFile.getAbsolutePath(), null, null));
+                if (dataUri != null) {
+                	ContentValues cv = new ContentValues();
+                	cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                	cv.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis());
+                	c.getContentResolver().update(dataUri, cv, null, null);
+                }
                 if (deleteImageFileAfter)
                     imageFile.delete();
                 return dataUri;
@@ -313,6 +320,12 @@ public class ImageTricks {
     public static Uri putBitmapIntoGalleryAndGetUri(Context c, Bitmap image, boolean recycleOriginal) {
         if (image != null) {
             Uri dataUri = Uri.parse(MediaStore.Images.Media.insertImage(c.getContentResolver(), image, null, null));
+            if (dataUri != null) {
+            	ContentValues cv = new ContentValues();
+            	cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+            	cv.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis());
+            	c.getContentResolver().update(dataUri, cv, null, null);
+            }
             if (recycleOriginal)
                 image.recycle();
             return dataUri; 
