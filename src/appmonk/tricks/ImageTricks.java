@@ -215,7 +215,7 @@ public class ImageTricks {
         		AppMonk.getContentResolver().delete(imageUri, null, null);
         	return bitmap;
         	
-    	} catch (Exception e) {
+    	} catch (Throwable e) {
     		e.printStackTrace();
     	}
     	return null;
@@ -241,7 +241,7 @@ public class ImageTricks {
         	
         	
         	return tmpFile;
-    	} catch (Exception e) {
+    	} catch (Throwable e) {
     		e.printStackTrace();
     	}
     	return null;
@@ -258,7 +258,7 @@ public class ImageTricks {
 	    	Uri rtr = Uri.parse(MediaStore.Images.Media.insertImage(AppMonk.getContentResolver(), tmpFile.getAbsolutePath(), null, null));
 	    	tmpFile.delete();
 	    	return rtr;
-    	} catch (Exception e) {
+    	} catch (Throwable e) {
     		throw new RuntimeException(e);
     	}
     }
@@ -270,7 +270,7 @@ public class ImageTricks {
                 if (!dir.mkdirs())
                     return false;
             } 
-            catch (Exception e) {
+            catch (Throwable e) {
                 return false;
             }
         }
@@ -282,7 +282,7 @@ public class ImageTricks {
         try {
             noMedia.createNewFile();
         } 
-        catch (Exception e) {
+        catch (Throwable e) {
             return false;
         }
         return true;
